@@ -23,7 +23,25 @@ def get_quantity_data():
     data_str2 = input("Number of Fish and Chips sold: ")
     data_str3 = input("Number of Brownies sold: ")
 
-    print(f"The number of Guinness sold is {data_str1}. The number of Fish and Chips sold is {data_str2}. The number of Brownies sold is {data_str3} ")
+    validate_data(data_str1, data_str2, data_str3)
 
+def validate_data(value1, value2, value3):
+    """
+    Inside the try, converts all strings values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there is more than one value in each item.
+    """
+    try:
+        if len(value1) != 1:
+            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
+        if len(value2) != 1:
+            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
+        if len(value3) != 1:
+            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+
+    
 
 get_quantity_data()
