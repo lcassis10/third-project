@@ -2,7 +2,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -13,6 +12,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sales_spreadsheet')
+
 
 def get_quantity_data():
     """
@@ -33,26 +33,26 @@ def get_quantity_data():
 
     return ([int(data1), int(data2), int(data3)])
 
-    
 
 def validate_data(value1, value2, value3):
     """
     Inside the try, chech if the data is a int.
     """
-    
+
     try:
-        if  type(value1) != int:
-            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
+        if type(value1) != int:
+            raise ValueError("You should be enter only numbers")
         if type(value2) != int:
-            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
+            raise ValueError("You should be enter only numbers")
         if type(value3) != int:
-            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
+            raise ValueError("You should be enter only numbers")
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
-    
+
     return True
+
 
 def update_worksheet(data, worksheet):
     """
@@ -64,6 +64,7 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully.\n")
 
+
 def calculate_gross_sale(quantity_row):
     """
     Mutiply quantity times price to get the total of gross sale.
@@ -71,13 +72,14 @@ def calculate_gross_sale(quantity_row):
     print("Calculating gross sale for the day...\n")
     price = SHEET.worksheet("price").get_all_values()
     price_row = price[-1]
-    
+
     gross_sale_data = []
     for price, quantity in zip(price_row, quantity_row):
         gross_sale = int(price) * quantity
         gross_sale_data.append(gross_sale)
-    
+
     return gross_sale_data
+
 
 def calculate_cost_data(quantity_row):
     """
@@ -94,6 +96,7 @@ def calculate_cost_data(quantity_row):
 
     return cost_data
 
+
 def calculate_profit_data(gross_sale_row, cost_row):
     """
     Subtract gross sale minus cost to get the profit of the day.
@@ -105,7 +108,8 @@ def calculate_profit_data(gross_sale_row, cost_row):
         total_profit = int(gross_sale) - int(cost)
         profit_data.append(total_profit)
 
-    return profit_data 
+    return profit_data
+
 
 def main():
     """
@@ -120,7 +124,7 @@ def main():
     new_profit_data = calculate_profit_data(new_gross_sale_data, new_total_cost_data)
     update_worksheet(new_profit_data, "profit")
 
-    print("--------------------------------------------------------------------------------------------------------")
+    print("---------------------------------------------------")
     print("DAILY REPORT\n")
     print(f"You sold {data_quantity[0]} Guinness today")
     print(f"You sold {data_quantity[1]} Fish and Chips today")
@@ -136,6 +140,7 @@ def main():
 
     print(f"TOTAL GROSS SALES OF THE DAY: €{sum(new_gross_sale_data)},00 ")
     print(f"TOTAL PROFIT OF THE DAY: €{sum(new_profit_data)},00 ")
+
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
