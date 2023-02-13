@@ -80,6 +80,21 @@ def calculate_gross_sale(quantity_row):
     
     return gross_sale_data
 
+def calculate_cost_data(quantity_row):
+    """
+    Mutiply quantity times cost to get the total cost spend to buy the stock.
+    """
+    print("Calculating cost of products sold for the day...\n")
+    cost = SHEET.worksheet("cost").get_all_values()
+    cost_row = cost[-1]
+
+    cost_data = []
+    for cost, quantity in zip(cost_row, quantity_row):
+        total_cost = int(cost) * quantity
+        cost_data.append(total_cost)
+
+    return cost_data
+
 
 def main():
     """
@@ -89,6 +104,8 @@ def main():
     update_worksheet(data_quantity, "quantity")
     new_gross_sale_data = calculate_gross_sale(data_quantity)
     update_worksheet(new_gross_sale_data, "gross sale")
+    new_total_cost_data = calculate_cost_data(data_quantity)
+    print(new_total_cost_data)
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
