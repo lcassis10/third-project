@@ -227,4 +227,3 @@ The website displays correctly across different browsers and screen sizes.
 - No unfixed bugs
 
 
-
