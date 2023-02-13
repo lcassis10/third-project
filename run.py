@@ -23,9 +23,9 @@ def get_quantity_data():
         print("Please enter the quantity of sales for each item")
         print("Data should be only numbers\n")
 
-        data1 = input("Number of Guinness sold: ")
-        data2 = input("Number of Fish and Chips sold: ")
-        data3 = input("Number of Brownies sold: ")
+        data1 = input("Number of Guinness sold: \n")
+        data2 = input("Number of Fish and Chips sold: \n")
+        data3 = input("Number of Brownies sold: \n")
 
         if validate_data(data1, data2, data3):
             break
