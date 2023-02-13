@@ -37,9 +37,7 @@ def get_quantity_data():
 
 def validate_data(value1, value2, value3):
     """
-    Inside the try, converts all strings values into integers.
-    Raises ValueError if strings cannot be converted into int,
-    or if there is more than one value in each item.
+    Inside the try, chech if the data is a int.
     """
     
     try:
