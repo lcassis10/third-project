@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -23,9 +24,9 @@ def get_quantity_data():
         print("Please enter the quantity of sales for each item")
         print("Data should be only numbers\n")
 
-        data1 = input("Number of Guinness sold: \n")
-        data2 = input("Number of Fish and Chips sold: \n")
-        data3 = input("Number of Brownies sold: \n")
+        data1 = int(input("Number of Guinness sold: \n"))
+        data2 = int(input("Number of Fish and Chips sold: \n"))
+        data3 = int(input("Number of Brownies sold: \n"))
 
         if validate_data(data1, data2, data3):
             break
@@ -42,12 +43,12 @@ def validate_data(value1, value2, value3):
     """
     
     try:
-        if len(value1) != 1:
-            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
-        if len(value2) != 1:
-            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
-        if len(value3) != 1:
-            raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
+        if  type(value1) != int:
+            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
+        if type(value2) != int:
+            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
+        if type(value3) != int:
+            raise ValueError("Please enter only integers numbers that correspond the total of sales for each item requested")
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
