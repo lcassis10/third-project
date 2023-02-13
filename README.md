@@ -17,7 +17,6 @@ A live demo can be found [here](https://third-project-code-institute.herokuapp.c
   * [Heroku Deployment](#heroku-deployment)
   * [Create data model and integrate using an API](#create-data-model-and-integrate-using-an-api)
 * [Testing](#testing)
-* [Credits](#credits)
 
 - - -
 
