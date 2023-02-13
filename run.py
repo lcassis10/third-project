@@ -15,6 +15,8 @@ SHEET = GSPREAD_CLIENT.open('sales_spreadsheet')
 def get_quantity_data():
     """
     Get quantity data from the user.
+    Run a while loop to collect a valid data from the user.
+    The loop will repeatedly request data, until it is valid.
     """
     while True:
         print("Please enter the quantity of sales for each item")
@@ -51,6 +53,16 @@ def validate_data(value1, value2, value3):
         return False
     
     return True
-    
 
-data = get_quantity_data()
+def update_quantity_worksheet(data):
+    """
+    Update quantity worksheet, add new row with the list data provided.
+    """
+    print("Updating quantity worksheet...\n")
+    quantity_worksheet = SHEET.worksheet("quantity")
+    quantity_worksheet.append_row(data)
+    print("Quantity worksheet updated successfully.\n")
+
+
+data_quantity = get_quantity_data()
+update_quantity_worksheet(data_quantity)
