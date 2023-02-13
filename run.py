@@ -95,7 +95,21 @@ def calculate_cost_data(quantity_row):
 
     return cost_data
 
+def calculate_profit_data(gross_sale_row, cost_row):
+    """
+    Subtract gross sale minus cost to get the profit of the day.
+    """
+    print("Calculating profit of the day...\n")
 
+    profit_data = []
+    for gross_sale, cost in zip(gross_sale_row, cost_row):
+        total_profit = int(gross_sale) - int(cost)
+        profit_data.append(total_profit)
+
+    return profit_data
+
+
+    
 
 def main():
     """
@@ -107,6 +121,7 @@ def main():
     update_worksheet(new_gross_sale_data, "gross sale")
     new_total_cost_data = calculate_cost_data(data_quantity)
     update_worksheet(new_total_cost_data, "cost of the day")
+    calculate_profit_data(new_gross_sale_data, new_total_cost_data)
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
