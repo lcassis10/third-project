@@ -71,7 +71,13 @@ def calculate_gross_sale(quantity_row):
     print("Calculating gross sale for the day...\n")
     price = SHEET.worksheet("price").get_all_values()
     price_row = price[-1]
-    print(price_row)
+    
+    gross_sale_data = []
+    for price, quantity in zip(price_row, quantity_row):
+        gross_sale = int(price) * quantity
+        gross_sale_data.append(gross_sale)
+    
+    return gross_sale_data
 
 
 def main():
@@ -80,7 +86,8 @@ def main():
     """
     data_quantity = get_quantity_data()
     update_quantity_worksheet(data_quantity)
-    calculate_gross_sale(data_quantity)
+    new_gross_sale_data = calculate_gross_sale(data_quantity)
+    print(new_gross_sale_data)
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
