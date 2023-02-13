@@ -24,9 +24,9 @@ def get_quantity_data():
         print("Please enter the quantity of sales for each item")
         print("Data should be only numbers\n")
 
-        data1 = int(input("Number of Guinness sold: \n"))
-        data2 = int(input("Number of Fish and Chips sold: \n"))
-        data3 = int(input("Number of Brownies sold: \n"))
+        data1 = input("Number of Guinness sold: \n")
+        data2 = input("Number of Fish and Chips sold: \n")
+        data3 = input("Number of Brownies sold: \n")
 
         if validate_data(data1, data2, data3):
             break
@@ -40,11 +40,11 @@ def validate_data(value1, value2, value3):
     """
 
     try:
-        if type(value1) != int:
+        if type(int(value1)) != int:
             raise ValueError("You should be enter only numbers")
-        if type(value2) != int:
+        if type(int(value2)) != int:
             raise ValueError("You should be enter only numbers")
-        if type(value3) != int:
+        if type(int(value3)) != int:
             raise ValueError("You should be enter only numbers")
 
     except ValueError as e:
