@@ -16,14 +16,20 @@ def get_quantity_data():
     """
     Get quantity data from the user.
     """
-    print("Please enter the quantity of sales for each item")
-    print("Data should be only numbers\n")
+    while True:
+        print("Please enter the quantity of sales for each item")
+        print("Data should be only numbers\n")
 
-    data_str1 = input("Number of Guinness sold: ")
-    data_str2 = input("Number of Fish and Chips sold: ")
-    data_str3 = input("Number of Brownies sold: ")
+        data1 = input("Number of Guinness sold: ")
+        data2 = input("Number of Fish and Chips sold: ")
+        data3 = input("Number of Brownies sold: ")
 
-    validate_data(data_str1, data_str2, data_str3)
+        if validate_data(data1, data2, data3):
+            break
+
+    return ([int(data1), int(data2), int(data3)])
+
+    
 
 def validate_data(value1, value2, value3):
     """
@@ -31,6 +37,7 @@ def validate_data(value1, value2, value3):
     Raises ValueError if strings cannot be converted into int,
     or if there is more than one value in each item.
     """
+    
     try:
         if len(value1) != 1:
             raise ValueError("Please enter only one number that correspond the total of sales for each item requested")
@@ -41,7 +48,9 @@ def validate_data(value1, value2, value3):
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
-
+        return False
+    
+    return True
     
 
-get_quantity_data()
+data = get_quantity_data()
