@@ -204,5 +204,27 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD.open("sales_spreadsheet")
 ```
+# Testing 
+The different aspects of the site work as intended and have an expected outcome providing an easy and straightforward way for the users to achieve their goals.
+The terminal was used during the development of the application to identify and resolve any issues as it progressed, testing correct and incorrect user inputs.
+
+## Functionality
+
+### Validator
+CI Python Linter was used to validate this project, no errors were returned.
+![validator](screenshots/validator.png)
+
+### Manual
+- I inserted all types of data into the terminal and the program runs normally when it is a number, and returns the expext ValueError when it is a diferent data type.
+
+## Compatibility
+The website displays correctly across different browsers and screen sizes.
+
+## Solved bugs
+- The validate_data function was not given the expect result. I converted the values to INT within the try statement and i got the result expected.
+
+## Unfixed bugs
+- No unfixed bugs
+
 
 
