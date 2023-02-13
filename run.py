@@ -55,14 +55,15 @@ def validate_data(value1, value2, value3):
     
     return True
 
-def update_quantity_worksheet(data):
+def update_worksheet(data, worksheet):
     """
-    Update quantity worksheet, add new row with the list data provided.
+    Receives a list of integers to be inserted into a worksheet.
+    Update the relevant worksheet with the data provided.
     """
-    print("Updating quantity worksheet...\n")
-    quantity_worksheet = SHEET.worksheet("quantity")
-    quantity_worksheet.append_row(data)
-    print("Quantity worksheet updated successfully.\n")
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully.\n")
 
 def calculate_gross_sale(quantity_row):
     """
@@ -85,9 +86,9 @@ def main():
     Run all program functions.
     """
     data_quantity = get_quantity_data()
-    update_quantity_worksheet(data_quantity)
+    update_worksheet(data_quantity, "quantity")
     new_gross_sale_data = calculate_gross_sale(data_quantity)
-    print(new_gross_sale_data)
+    update_worksheet(new_gross_sale_data, "gross sale")
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
