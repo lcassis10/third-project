@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -63,6 +64,24 @@ def update_quantity_worksheet(data):
     quantity_worksheet.append_row(data)
     print("Quantity worksheet updated successfully.\n")
 
+def calculate_gross_sale(quantity_row):
+    """
+    Mutiply quantity times price to get the total of gross sale.
+    """
+    print("Calculating gross sale for the day...\n")
+    price = SHEET.worksheet("price").get_all_values()
+    price_row = price[-1]
+    print(price_row)
 
-data_quantity = get_quantity_data()
-update_quantity_worksheet(data_quantity)
+
+def main():
+    """
+    Run all program functions.
+    """
+    data_quantity = get_quantity_data()
+    update_quantity_worksheet(data_quantity)
+    calculate_gross_sale(data_quantity)
+
+print("Welcome to sales data automation!")
+print("---------------------------------")
+main()
