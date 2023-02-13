@@ -96,6 +96,7 @@ def calculate_cost_data(quantity_row):
     return cost_data
 
 
+
 def main():
     """
     Run all program functions.
@@ -105,7 +106,7 @@ def main():
     new_gross_sale_data = calculate_gross_sale(data_quantity)
     update_worksheet(new_gross_sale_data, "gross sale")
     new_total_cost_data = calculate_cost_data(data_quantity)
-    print(new_total_cost_data)
+    update_worksheet(new_total_cost_data, "cost of the day")
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
