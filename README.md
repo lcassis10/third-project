@@ -94,3 +94,8 @@ The data of price and cost are collected from each worksheet and the gross sale,
 - The program will print a daily report with the usefull information needed for the user
 
 ![daily_report](screenshots/daily_report.png)
+
+## Future Implementations
+- More products on the list
+- The user will be able to change the price and the cost without having to change manually in the worksheet
+
