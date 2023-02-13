@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -106,10 +106,7 @@ def calculate_profit_data(gross_sale_row, cost_row):
         total_profit = int(gross_sale) - int(cost)
         profit_data.append(total_profit)
 
-    return profit_data
-
-
-    
+    return profit_data 
 
 def main():
     """
@@ -121,8 +118,27 @@ def main():
     update_worksheet(new_gross_sale_data, "gross sale")
     new_total_cost_data = calculate_cost_data(data_quantity)
     update_worksheet(new_total_cost_data, "cost of the day")
-    calculate_profit_data(new_gross_sale_data, new_total_cost_data)
+    new_profit_data = calculate_profit_data(new_gross_sale_data, new_total_cost_data)
+    update_worksheet(new_profit_data, "profit")
+
+    print("--------------------------------------------------------------------------------------------------------")
+    print("DAILY REPORT\n")
+    print(f"You sold {data_quantity[0]} Guinness today")
+    print(f"You sold {data_quantity[1]} Fish and Chips today")
+    print(f"You sold {data_quantity[2]} Brownies today\n")
+
+    print(f"Your gross sales for Guinness today was €{new_gross_sale_data[0]},00")
+    print(f"Your gross sales for Fish and Chips today was €{new_gross_sale_data[1]},00")
+    print(f"Your gross sales for Brownies today was €{new_gross_sale_data[2]},00\n")
+
+    print(f"Your PROFIT on Guinness today was €{new_profit_data[0]},00")
+    print(f"Your PROFIT on Fish and Chips today was €{new_profit_data[1]},00")
+    print(f"Your PROFIT on Brownie today was €{new_profit_data[2]},00\n")
+
+    print(f"TOTAL GROSS SALES OF THE DAY: €{sum(new_gross_sale_data)},00 ")
+    print(f"TOTAL PROFIT OF THE DAY: €{sum(new_profit_data)},00 ")
 
 print("Welcome to sales data automation!")
 print("---------------------------------")
 main()
+
